@@ -1,13 +1,99 @@
 <section class="orders-show">
 
-  <header class="page-header">
-    <h1>Order #<%= @order.id %></h1>
-  </header>
+  <div class="container mt-5 mb-5 max-width">
 
-  <div class="order-summary jumbotron">
-    <h4>Thank you for your order!</h4>
+    <div class="row d-flex justify-content-center">
+      <div class="col">
+        <div class="card">
+          
+          <div class="invoice p-5">
+            <div class="order-summary jumbotron">
+              <h4>Thank you for your order!</h4>
+            </div>
+            <span class="font-weight-bold d-block mt-4">Hello, <%= @order.email.split('@').first %></span>
+            <span>You order has been confirmed and will be shipped in next two days!</span>
+            <div class="payment border-top mt-3 mb-3 border-bottom table-responsive">
+              <table class="table table-borderless">
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="py-2">
+                        <span class="d-block text-muted">Order Date</span>
+                        <span><%= @order.created_at.strftime("%d %B, %Y") %></span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="py-2">
+                        <span class="d-block text-muted">Order No</span>
+                        <span><%= @order.id %></span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="py-2">
+                        <span class="d-block text-muted">Payment</span>
+                        <span>
+                          <img src="https://img.icons8.com/color/48/000000/mastercard.png" width="20" />
+                        </span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="py-2">
+                        <span class="d-block text-muted">Email Address</span>
+                        <span><%= @order.email %></span>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="product border-bottom table-responsive">
+              <table class="table table-borderless">
+                <thead>
+                  <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Product Description</th>
+                    <th scope="col">Unit Price</th>
+                    <th scope="col">Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @order.line_items.each do |item| %>
+                    <%= render 'line_item', product: item.product, quantity: item[:quantity].to_i %>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+            <div class="row d-flex justify-content-end">
+              <div class="col-md-5">
+                <table class="table table-borderless">
+                  <tbody class="totals">
+                    <tr>
+                      <td>
+                        <div class="total-text">
+                          <span>Total</span>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="total-text">
+                          <span>$168.50</span>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <p>We will be sending shipping confirmation email when the item shipped successfully!</p>
+            <p class="font-weight-bold mb-0">Thanks for shopping with us!</p>
+            <span>Jungle Team</span>
+          </div>
+        </div>
+      </div>
+      
+      <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-success' %>
+    </div>
+
   </div>
 
-  <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
 
 </section>

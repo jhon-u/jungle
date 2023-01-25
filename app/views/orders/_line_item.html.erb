@@ -1,0 +1,20 @@
+<tr>
+  <td >
+    <%= image_tag product.image.tiny.url %>
+  </td>
+  <td >
+    <span class="font-weight-bold"><%= product.name %></span>
+    <div class="product-qty">
+      <span class="d-block">Quantity: <%= quantity %></span>
+      <span><%= product.description %></span>
+    </div>
+  </td>
+  <td>
+    $<%= product.price %>
+  </td>
+  <td >
+    <div class="text-right">
+      <span class="font-weight-bold">$<%= product.price * quantity %></span>
+    </div>
+  </td>
+</tr>

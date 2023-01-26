@@ -30,6 +30,7 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'bootstrap-sass', '~> 3.3.6'
 gem 'bootstrap', '~> 5.0.1'
 gem 'font-awesome-rails'
+gem 'font-awesome-sass', '~> 6.2.1'
 
 # Money managing
 gem 'money-rails'

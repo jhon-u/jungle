@@ -4,7 +4,7 @@
     <h1>Admin &raquo; New Product</h1>
   </header>
 
-  <div class="well">
+  <div class="well mb-5">
     <%= link_to 'All Products', [:admin, :products], class: 'btn btn-info' %>
   </div>
 
@@ -50,12 +50,12 @@
 
 
 
-        <div class="form-group">
+        <div class="form-group mt-3">
           <%= form.label :image %>
           <%= form.file_field :image %>
         </div>
 
-        <%= form.submit 'Create Product', class: 'btn btn-primary' %>
+        <%= form.submit 'Create Product', class: 'btn btn-primary mt-5' %>
       <% end %>
     </div>
   </div>

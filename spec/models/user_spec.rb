@@ -107,7 +107,37 @@ RSpec.describe User, type: :model do
   end
 
   describe '.authenticate_with_credentials' do
-    # examples for this class method here
+    it 'should log the user in' do
+      @user = User.create(first_name: 'first_name', last_name: 'last_name', email: 'test@test.com', password: 'password', password_confirmation: 'password')
+      @user.save
+      @user = User.authenticate_with_credentials('test@test.com', 'password')
+
+      expect(@user).not_to be nil
+    end
+
+    it 'should log the user in when the emails are in different cases' do
+      @user = User.create(first_name: 'first_name', last_name: 'last_name', email: 'test@test.com', password: 'password', password_confirmation: 'password')
+      @user.save
+      @user = User.authenticate_with_credentials('TEST@test.COM', 'password')
+
+      expect(@user).to be_truthy
+    end
+
+    it 'should log the user in when the email has trailing spaces' do
+      @user = User.create(first_name: 'first_name', last_name: 'last_name', email: 'test@test.com', password: 'password', password_confirmation: 'password')
+      @user.save
+      @user = User.authenticate_with_credentials('  test@test.com  ', 'password')
+
+      expect(@user).to be_truthy
+    end
+
+    it 'should not log the user in when password is incorrect' do
+      @user = User.create(first_name: 'first_name', last_name: 'last_name', email: 'test@test.com', password: 'password', password_confirmation: 'password')
+      @user.save
+      @user = User.authenticate_with_credentials('test@test.com', 'pass')
+
+      expect(@user).to be_falsy
+    end
   end
 end
 

@@ -9,10 +9,11 @@ describe('Add product to Cart', () => {
     cy.visit('/')
   })
 
-  it("Navigate to product page", () => {
+  it("Navigate to product page and adds 1 product to the cart", () => {
     cy.get('.products article a').first().click()
     cy.get('form .btn').contains('Add').click()
-    cy.get('#navbarSupportedContent ul li').last().contains('My Cart (1)')    
+    cy.get('#navbarSupportedContent').contains('My Cart (1)').should('be.exist')
+
   });
 
 })

@@ -9,8 +9,14 @@ describe('Navigate to product page', () => {
     cy.visit('/')
   })
 
-  it("Navigate to product page", () => {
-    cy.get('.products article a').first().click()
+  it("Navigate to product page when the image is clicked", () => {
+    cy.get('.products article a img').first().click()
+    cy.get('.quantity span').should('have.text', '18 in stock at $24.99')
+  });
+  
+  it("Navigate to product page when the product name is clicked", () => {
+    cy.get('.products article h1').contains('Scented Blade').click({ force: true })
+    cy.get('.quantity span').should('have.text', '18 in stock at $24.99')
   });
 
 

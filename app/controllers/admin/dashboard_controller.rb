@@ -5,5 +5,6 @@ class Admin::DashboardController < ApplicationController
     @categories = Category.all
     @products = Product.all
     @orders = Order.all
+    @users = User.all
   end
 end
